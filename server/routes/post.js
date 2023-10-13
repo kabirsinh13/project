@@ -32,6 +32,14 @@ router.get("/allPost",(req,res)=>{
     })
 })
 
+router.get("/allPost/:postId",(req,res)=>{
+    Post.find({_id:req.params.postId}).populate('postedBy',"_id name").then((post)=>{
+        return res.json({post});
+    }).catch((error)=>{
+        console.log(error)
+    })
+})
+
 router.get("/mypost",loginRequire,(req,res)=>{
     Post.find({postedBy:req.user._id}).populate("postedBy","_id name").then((post)=>{
         return res.json({post});

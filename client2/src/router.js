@@ -1,10 +1,11 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import MyHome from './components/Myhome.vue';
 import CreatePost from './components/CreatePost.vue';
-import AboutPage from './components/AboutPage.vue'
+import AboutPage from './components/AboutPage.vue';
+import Post from './components/Post.vue';
 
 const router = createRouter({
-    history:createWebHashHistory(),
+    history:createWebHistory(),
     routes:[
         {
             path: "/",
@@ -15,6 +16,11 @@ const router = createRouter({
             path: "/createPost",
             name: "create-Post",
             component: CreatePost,
+        },
+        {
+            path:"/post/:id",
+            name:"post",
+            component:Post,
         },
         {
             path: "/about",
