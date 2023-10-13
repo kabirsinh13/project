@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row no-gutters>
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
-        <v-card class="pa-1">
+        <v-card class="pa-1" :to="{ name:'post',params:{ id: post._id} }">
           <v-img height="250" :src="`${publicPath}ganga.jpg`"></v-img>
           <v-btn class="ml-4 mt-3" small outlined color="indigo">
             {{ post.title }}
@@ -31,7 +31,7 @@
       };
     },
     async created(){
-      console.log(this.publicPath)
+      // console.log(this.publicPath)
       const result =await axios.get('/allpost');
       this.posts=result.data.post
       },
