@@ -24,7 +24,7 @@ router.post('/createPost',loginRequire,(req,res)=>{
     })
 })
 
-router.get("/allPost",loginRequire,(req,res)=>{
+router.get("/allPost",(req,res)=>{
     Post.find().populate('postedBy',"_id name").then((post)=>{
         return res.json({post});
     }).catch((error)=>{

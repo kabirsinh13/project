@@ -3,7 +3,7 @@ const app=express();
 const mongoose=require('mongoose');
 const {MONGOURI} = require('./db');
 const PORT = 5000;
-
+const cors = require('cors');
 
 // import schemas
 require("./models/user");
@@ -25,6 +25,7 @@ mongoose.connection.on('error',(err)=>{
     console.log(err);
 })
 
+app.use(cors())
 
 // deploy project to server
 app.listen(PORT,()=>{
