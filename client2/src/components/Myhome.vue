@@ -1,5 +1,23 @@
 <template>
-<h1>sfdjsda;lkfj</h1>
+  <v-container>
+    <v-row>
+      <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
+        <v-card class="pa-1">
+          <v-img height="250" :src="`${publicPath}ganga.jpg`"></v-img>
+          <v-btn class="ml-4 mt-3" small outlined color="indigo">
+            {{ post.title }}
+          </v-btn>
+          <v-card-title class="headline">
+            {{ post.title }}
+          </v-card-title>
+          <v-card-text class="py-0">
+            <p>{{ post.body + '...'}}</p>
+          </v-card-text>
+        </v-card>
+
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -9,13 +27,13 @@
     data(){
       return{
         posts:[],
+        publicPath: process.env.BASE_URL
       };
     },
-    methods:{
-      async created(){
-        this.post=await axios.get('/allpost');
-        console.log(this.post.data.post)
+    async created(){
+      console.log(this.publicPath)
+      const result =await axios.get('/allpost');
+      this.posts=result.data.post
       },
-    },
   }
 </script>
