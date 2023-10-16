@@ -15,13 +15,16 @@
                             </v-col>
                         </v-row>
                     </v-card-actions>
-                    <v-card-subtitles class="headline">
+                    <v-card-title class="headline">
                         <h3>{{ post.body }}</h3>
-                    </v-card-subtitles>
-                    <v-card-text class="grey--text">
+                    </v-card-title>
+                    <v-card-subtitle class="grey--text">
                         <p>{{ post.title }}</p>
-                        <p>{{ post.name }}</p>
+                    </v-card-subtitle>
+                    <v-card-text>
+                    <p>{{ name }}</p>
                     </v-card-text>
+
                 </v-card>
             </v-col>
         </v-row>
@@ -34,7 +37,8 @@
         data(){
             return{
                 post:{},
-                publicPath: process.env.BASE_URL
+                publicPath: process.env.BASE_URL,
+                name:"",
 
             };
         },
@@ -42,7 +46,8 @@
             const id=this.$route.params.id
             const result=await axios.get('/allpost/'+id);
             this.post=result.data.post[0];
-            console.log(this.post[0])
+            this.name=this.post.postedBy.name;
+            // console.log(this.post[0])
         }
     }
 </script>

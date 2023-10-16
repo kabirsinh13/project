@@ -4,13 +4,16 @@ const mongoose = require("mongoose");
 const loginRequire = require("../middleware/loginRequire");
 const Post = mongoose.model("Post");
 
-router.post('/createPost',loginRequire,(req,res)=>{
+// router.post('/createPost',loginRequire,(req,res)=>{
+router.post('/createPost',(req,res)=>{
+    // console.log("reach")
     const {title,body} = req.body;
-
+    // console.log(title);
+    // console.log(body);
     if(!title || !body){
         return req.json({error:"Please add all fields"})
     }
-    req.user.password=undefined; 
+    // req.user.password=undefined; 
     const post = new Post({
         title,
         body,

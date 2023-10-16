@@ -4,14 +4,12 @@
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
         <v-card class="pa-1" :to="{ name:'post',params:{ id: post._id} }">
           <v-img height="250" :src="`${publicPath}ganga.jpg`"></v-img>
-          <v-btn class="ml-4 mt-3" small outlined color="indigo">
-            {{ post.title }}
-          </v-btn>
+          <v-btn small outlined color = "primary" text>{{ post.title }}</v-btn>
           <v-card-title class="headline">
             {{ post.title }}
           </v-card-title>
           <v-card-text class="py-0">
-            <p>{{ post.body + '...'}}</p>
+            <p>{{ post.body.substring(0,30) + '...'}}</p>
           </v-card-text>
         </v-card>
 

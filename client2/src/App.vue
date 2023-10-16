@@ -35,6 +35,10 @@
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>Destishare</v-app-bar-title>
+        <v-col sm="10" class="d-flex justify-end">
+            <!-- <v-btn color="success" >Edit</v-btn> -->
+            <v-btn color="red" >logout</v-btn>
+        </v-col>
     </v-app-bar>
 
     <v-main>

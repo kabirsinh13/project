@@ -15,7 +15,8 @@ const postSchema = mongoose.Schema({
     },
     postedBy:{
         type:ObjectId,
-        ref:"User"
+        ref:"User",
+        default:'65279adc7524ef7872ffdd0a'
     }
 })
 
