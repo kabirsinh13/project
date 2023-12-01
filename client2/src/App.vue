@@ -31,19 +31,28 @@
     </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar>
+    <v-app-bar v-if="!isAuth">
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-app-bar-title>Destishare</v-app-bar-title>
         <v-col sm="10" class="d-flex justify-end">
-            <!-- <v-btn color="success" >Edit</v-btn> -->
-            <v-btn color="red" >logout</v-btn>
+            <v-btn color="green" @click="login">login</v-btn>
         </v-col>
     </v-app-bar>
 
-    <v-main>
+    <v-app-bar v-if="isAuth">
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-app-bar-title>Destishare</v-app-bar-title>
+        <v-col sm="10" class="d-flex justify-end">
+            <v-btn color="red" @click="logout">logout</v-btn>
+        </v-col>
+    </v-app-bar>
+
+    <v-main v-if="isAuth">
       <router-view></router-view>
     </v-main>
+ 
   </v-app>
 </template>
 
@@ -62,6 +71,20 @@
         { title: 'About', icon: 'mdi-help-box',link:"/about" },
       ],
     }),
-   
+   methods:{
+    login(){
+      this.$router.replace('/login')
+      // console.log("aksfjslkdfjs")
+      this.$store.dispatch('login');
+    },
+    logout(){
+      this.$store.dispatch('logout');
+    }
+   },
+   computed:{
+    isAuth(){
+      return this.$store.getters.userAuthienticated;
+    }
+   }
   }
 </script>

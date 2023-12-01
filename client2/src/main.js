@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 
 import router from './router.js'
 import App from './App.vue'
+import { createStore } from 'vuex'
 // import
 
 
@@ -31,11 +32,36 @@ const vuetify = createVuetify({
   directives,
 })
 
+const store = createStore({
+  state(){
+    return{
+      isAuth:false,
+    }
+  },
+  mutations:{
+    setAuth(state,payload){
+      state.isAuth=payload.value
+    }
+  },
+  actions:{
+    login(context){
+      context.commit('setAuth',{value:true})
+    },
+    logout(context){
+      context.commit('setAuth',{value:false})
+    }
+  },
+  getters:{
+    userAuthienticated(state){
+      return state.isAuth;
+    }
+  }
+})
+
 const app = createApp(App);
 
 app.use(router);
-// app.use(router);
-
+app.use(store);
 app.use(vuetify);
 
 app.mount('#app');

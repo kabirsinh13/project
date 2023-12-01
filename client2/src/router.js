@@ -3,6 +3,8 @@ import MyHome from './components/Myhome.vue';
 import CreatePost from './components/CreatePost.vue';
 import AboutPage from './components/AboutPage.vue';
 import Post from './components/Post.vue';
+import Login from './components/login.vue';
+import Signup from './components/signup.vue';
 
 const router = createRouter({
     history:createWebHistory(),
@@ -26,6 +28,16 @@ const router = createRouter({
             path: "/about",
             name: "About",
             component: AboutPage,
+        },
+        {
+            path:"/login",
+            name:"Login",
+            component:Login,
+        },
+        {
+            path:"/signup",
+            name:"Signup",
+            component:Signup,
         }
     ]
 })

@@ -18,6 +18,43 @@
     </v-container>
 </template>
 <script>
+    const axios = require ('axios');
+    export default{
+        data(){
+            return{
+                rules:[(value)=>!!value || 'This field is req'],
+                post:{
+                    title:"",
+                    body:"",
+                    category:"",
+                    content:"",
+                    image:'',
+                },
+            };
+        },
+
+        methods:{
+            selectFile(event){
+                this.post.image=event.target.files[0];
+                //  console.log(this.post.image)
+            },
+            async submitForm(){
+                const formdata = new FormData() 
+                console.log(this.post)
+                formdata.append('title',this.post.title)
+                formdata.append('body',this.post.content)
+                formdata.append('category',this.post.category)
+                formdata.append('photos',this.post.image)
+
+                const response = await axios.post("/createPost",formdata);
+                this.$router.push({name:"home",params:{message:response.message}});
+            }
+        }   
+    }
+</script>
+
+
+<!-- <script>
         const axios = require ('axios');
     export default{
 
@@ -81,4 +118,4 @@
             }
         }   
     }
-</script>
+</script> -->
