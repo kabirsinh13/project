@@ -13,8 +13,10 @@ router.get('/',(req,res)=>{
     res.send("hello world!!")
 })
 
-router.post('/signup',(req,res)=>{
+router.post('/Signup',(req,res)=>{
     const {name,email,password}=req.body;
+
+    console.log(name,email,password);
 
     if(!name || !email || !password){
         return res.status(404).json({error:"Fields are empty!!"});
@@ -42,9 +44,9 @@ router.post('/signup',(req,res)=>{
     })
 })
 
-router.post('/signin',(req,res)=>{
+router.post('/Signin',(req,res)=>{
     const {email,password}=req.body;
-
+    // console.log(email,password);
     if(!email || !password){
         return res.status(404).json({error:"Fields are empty!!"});
     }
